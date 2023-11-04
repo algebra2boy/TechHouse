@@ -1,0 +1,36 @@
+
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.filter {
+    width: 500px;
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+}
+
+
+.filter-btn {
+    height: 40px;
+    margin: auto;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.selected {
+    background-color: #748E63;
+}
+
+.post {
+    display: flex;
+    width: 500px;
+    flex-direction: column;
+    justify-content: center;
+    background-color: antiquewhite;
+    margin-top: 20px;
+}
+
+
