@@ -5,7 +5,7 @@ const PostList = ({ posts }) => {
     return (
         <div className="post-list">
             {posts && posts.map((post, index) => (
-                <ListItem id={index} post={post} key={index} />
+                <ListItem post={post} key={index} />
             ))}
         </div>
     );
