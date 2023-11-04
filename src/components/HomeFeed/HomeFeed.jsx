@@ -28,9 +28,7 @@ const HomeFeed = () => {
     }, []);
 
     useEffect(() => {
-        if (searchTerm.length > 0) {
-            setFilteredPosts(posts.filter(p => p.title.toLowerCase().includes(searchTerm)));
-        }
+        if (searchTerm.length > 0) setFilteredPosts(posts.filter(p => p.title.toLowerCase().includes(searchTerm)));
     }, [searchTerm]);
 
     const customSort = (filter) => {
