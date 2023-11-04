@@ -25,7 +25,7 @@ const HomeFeed = () => {
             setPosts(data);
         };
         fetchPosts();
-    }, []);
+    }, [posts]);
 
     useEffect(() => {
         if (searchTerm.length > 0) setFilteredPosts(posts.filter(p => p.title.toLowerCase().includes(searchTerm)));
@@ -39,21 +39,13 @@ const HomeFeed = () => {
         }
     };
 
-    const updatePostsHandler = (post, attribute, value) => {
-        const newPosts = posts.map((p) => {
-            if (p.id === post.id) return { ...p, [attribute]: value };
-            return p;
-        });
-        setPosts(newPosts);
-    }
     return (
         <div className="home-container">
 
             <Filter filter={filter} setFilter={setFilter} sort={customSort} />
 
             <PostList 
-                posts={searchTerm.length === 0 ? posts : filteredPosts }
-                updatePostsHandler={updatePostsHandler}/>
+                posts={searchTerm.length === 0 ? posts : filteredPosts } />
 
         </div>
     )

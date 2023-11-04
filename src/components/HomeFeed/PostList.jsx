@@ -2,7 +2,7 @@ import React from "react";
 import ListItem from "./ListItem";
 import { Link } from "react-router-dom";
 
-const PostList = ({ posts, updatePostsHandler }) => {
+const PostList = ({ posts }) => {
     return (
         <div className="post-list">
             {posts && posts.map((post, index) => (
@@ -12,7 +12,6 @@ const PostList = ({ posts, updatePostsHandler }) => {
                     state={
                         {
                             "post": post,
-                            "updatePostsHandler": updatePostsHandler
                         }
                     }
                     key={index}>

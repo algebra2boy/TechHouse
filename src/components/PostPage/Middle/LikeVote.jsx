@@ -3,18 +3,13 @@ import thumb from "/thumb.jpg";
 
 import database from "../../../Database/supabase.js";
 
-const LikeVote = ({ post, updatePostsHandler }) => {
+const LikeVote = ({ post }) => {
 
     const likeHandler = async () => {
-        updatePostsHandler(post, "like_count", post.like_count + 1);
-        const response = await database
+        await database
             .from("Posts")
-            .update({ like_count: post.like_count})
+            .update({ like_count: post.like_count + 1 })
             .eq("id", post.id);
-
-        console.log(response);
-
-
     }
 
     return (
