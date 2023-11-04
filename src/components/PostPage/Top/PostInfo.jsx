@@ -5,7 +5,7 @@ const PostInfo = ({ post }) => {
 
     return (
         <>
-            <h4 className="item">{`Posted ${convertTimeStamp(post.created_at)} hours ago`}</h4>
+            <h4 className="item">{convertTimeStamp(post.created_at)}</h4>
             <h2 className="item">{post.title}</h2>
             <h3 className="item">{post.content}</h3>
             {post.url.length > 0 &&

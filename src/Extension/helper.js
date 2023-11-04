@@ -4,6 +4,10 @@ export const convertTimeStamp = (timestamp) => {
     const difference = curr - prev;
     const differenceInHours = Math.floor(difference / 1000 / 60 / 60);
 
-    return differenceInHours <= 24 ? differenceInHours : differenceInHours % 24;
+    if (differenceInHours <= 24) {
+        return `Posted ${differenceInHours} ${differenceInHours <= 1 ? "hour" : "hours"} ago`;
+    } else {
+        const day = differenceInHours % 24;
+        return `Posted ${day} ${day === 1 ? "day" : "days"} ago`;
+    }
 }
-
