@@ -25,7 +25,7 @@ const HomeFeed = () => {
             setPosts(data);
         };
         fetchPosts();
-    }, [posts]);
+    }, []);
 
     useEffect(() => {
         if (searchTerm.length > 0) setFilteredPosts(posts.filter(p => p.title.toLowerCase().includes(searchTerm)));
