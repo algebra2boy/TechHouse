@@ -19,7 +19,8 @@
 }
 
 .search-input {
-    width: 130%;
+    width: 100%;
+    max-width: 780px;
     padding: 5px;
     border-radius: 8px;
 }
