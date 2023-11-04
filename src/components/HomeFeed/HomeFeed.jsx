@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
+import { useOutletContext } from 'react-router-dom';
+
 import Filter from "./Filter";
-import ListItem from "./ListItem";
 import database from "../../database/supabase";
 
 import "./HomeFeed.css";
+import PostList from "./PostList";
 
 const HomeFeed = () => {
 
+    // this comes from parent compoennt (search bar)
+    const { searchTerm } = useOutletContext();
+
     const [posts, setPosts] = useState([]);
+    const [filteredPosts, setFilteredPosts] = useState([]);
     const [filter, setFilter] = useState(""); // either "newest" or "popular"
 
     useEffect(() => {
@@ -18,8 +24,14 @@ const HomeFeed = () => {
                 .order('created_at', { ascending: true });
             setPosts(data);
         };
-        fetchPosts(posts);
+        fetchPosts();
     }, []);
+
+    useEffect(() => {
+        if (searchTerm.length > 0) {
+            setFilteredPosts(posts.filter(p => p.title.toLowerCase().includes(searchTerm)));
+        }
+    }, [searchTerm]);
 
     const customSort = (filter) => {
         if (filter === "newest") {
@@ -27,17 +39,14 @@ const HomeFeed = () => {
         } else if (filter === "popular") {
             posts.sort((a, b) => b.like_count - a.like_count);
         }
-    }
-
+    };
     return (
         <div className="home-container">
+
             <Filter filter={filter} setFilter={setFilter} sort={customSort} />
 
-            <div className="post-list">
-                {posts && posts.map((post, index) => (
-                    <ListItem id={index} post={post} key={index} />
-                ))}
-            </div>
+            <PostList posts={searchTerm.length === 0 ? posts : filteredPosts }/>
+
         </div>
     )
 };

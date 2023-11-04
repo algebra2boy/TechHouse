@@ -1,7 +1,11 @@
 import { Outlet, Link } from "react-router-dom";
+import { useState } from "react";
 import "./NavBar.css";
 
 const NavBar = () => {
+
+    const [searchTerm, setSearchTerm] = useState("");
+
     return (
         <>
             <div className="NavBar">
@@ -10,7 +14,9 @@ const NavBar = () => {
                     <input
                         type="text"
                         placeholder="Search"
-                        className="search-input" />
+                        className="search-input"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)} />
                 </div>
 
                 <div className="navigation">
@@ -25,7 +31,7 @@ const NavBar = () => {
             </div>
 
             {/* child element */}
-            <Outlet />
+            <Outlet context={{ searchTerm }} />
         </>
     )
 
