@@ -27,7 +27,6 @@
 .post {
     display: flex;
     width: 1000px;
-    height: 250px;
     flex-direction: column;
     justify-content: center;
     background-color: antiquewhite;
@@ -45,4 +44,9 @@
     .post {
         width: 500px; /* make the width responsive */
     }
+}
+
+img {
+    width: 200px;
+    height: 200px;
 }

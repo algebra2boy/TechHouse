@@ -1,6 +1,10 @@
 import React from "react";
 import { useParams, useLocation } from "react-router-dom";
-import ListItem from "../HomeFeed/ListItem";
+
+import PostInfo from "./Top/PostInfo";
+import Middle from "./Middle/Middle";
+
+import "./PostPage.css";
 
 const PostPage = () => {
 
@@ -8,22 +12,20 @@ const PostPage = () => {
     const post = useLocation().state.post;
 
     return (
-        <>
-            <h1>
-                {id}
-                {JSON.stringify(post)}
-            </h1>
+        <div className="post-page">
 
-            <div className="post-page">
-                <div className="top-section">
-                    <ListItem post={post} />
-                </div>
-
-                <div className="botton-section">
-
-                </div>
+            <div className="top-section">
+                <PostInfo post={post} />
             </div>
-        </>
+
+            <div className="middle-section">
+                <Middle postID={id}/>
+            </div>
+
+            <div className="botton-section">
+
+            </div>
+        </div>
     )
 };
 

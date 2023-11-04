@@ -1,0 +1,11 @@
+.top-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+}
+
+.post-page {
+    display: flex;
+    flex-direction: column;
+}

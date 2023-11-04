@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import supabase from "../../database/supabase.js";
+import supabase from "../../Database/supabase.js";
 
 import "./FormContainer.css";
 
@@ -33,6 +33,7 @@ const FormContainer = () => {
                     "url": formData.url
                 });
             clearField();
+            window.location = "/";
         } catch (error) {
             alert("Something went wrong inserting the record", error);
         }
