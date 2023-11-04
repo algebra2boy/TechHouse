@@ -10,16 +10,16 @@ const PostPage = () => {
 
     const id = useParams().id;
     const post = useLocation().state.post;
+    const updatePostsHandler = useLocation().state.updatePostsHandler;
 
     return (
         <div className="post-page">
-
             <div className="top-section">
                 <PostInfo post={post} />
             </div>
 
             <div className="middle-section">
-                <Middle postID={id}/>
+                <Middle post={post} updatePostsHandler={updatePostsHandler} />
             </div>
 
             <div className="botton-section">

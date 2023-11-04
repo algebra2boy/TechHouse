@@ -2,10 +2,10 @@ import React from "react";
 import LikeVote from "./LikeVote";
 import UpdateVote from "./UpdateVote";
 
-const Middle = ({ postID }) => {
+const Middle = ({ post, updatePostsHandler }) => {
     return (
         <>
-            <LikeVote postID={postID}/>
+            <LikeVote post={post} updatePostsHandler={updatePostsHandler}/>
         </>
     )
 }

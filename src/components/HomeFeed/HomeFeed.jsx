@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useOutletContext } from 'react-router-dom';
 
 import Filter from "./Filter";
-import database from "../../database/supabase";
+import database from "../../Database/supabase";
 
 import "./HomeFeed.css";
 import PostList from "./PostList";
@@ -38,12 +38,22 @@ const HomeFeed = () => {
             posts.sort((a, b) => b.like_count - a.like_count);
         }
     };
+
+    const updatePostsHandler = (post, attribute, value) => {
+        const newPosts = posts.map((p) => {
+            if (p.id === post.id) return { ...p, [attribute]: value };
+            return p;
+        });
+        setPosts(newPosts);
+    }
     return (
         <div className="home-container">
 
             <Filter filter={filter} setFilter={setFilter} sort={customSort} />
 
-            <PostList posts={searchTerm.length === 0 ? posts : filteredPosts }/>
+            <PostList 
+                posts={searchTerm.length === 0 ? posts : filteredPosts }
+                updatePostsHandler={updatePostsHandler}/>
 
         </div>
     )

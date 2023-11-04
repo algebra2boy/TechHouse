@@ -1,11 +1,17 @@
-.top-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: auto;
-}
-
 .post-page {
     display: flex;
     flex-direction: column;
+    width: 1000px;
+    text-align: left;
+    margin: auto;
+}
+
+.middle-section {
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+}
+
+.thumb {
+    margin-top: 10px;
 }
