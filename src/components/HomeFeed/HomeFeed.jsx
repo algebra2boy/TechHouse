@@ -8,22 +8,30 @@ import "./HomeFeed.css";
 const HomeFeed = () => {
 
     const [posts, setPosts] = useState([]);
+    const [filter, setFilter] = useState(""); // either "newest" or "popular"
 
     useEffect(() => {
         const fetchPosts = async () => {
             const { data } = await database
                 .from("Posts")
-                .select();
-            console.log(data);
+                .select()
+                .order('created_at', { ascending: true });
             setPosts(data);
         };
         fetchPosts(posts);
-        console.log(posts);
     }, []);
+
+    const customSort = (filter) => {
+        if (filter === "newest") {
+            posts.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+        } else if (filter === "popular") {
+            posts.sort((a, b) => b.like_count - a.like_count);
+        }
+    }
 
     return (
         <div className="home-container">
-            <Filter />
+            <Filter filter={filter} setFilter={setFilter} sort={customSort} />
 
             <div className="post-list">
                 {posts && posts.map((post, index) => (
