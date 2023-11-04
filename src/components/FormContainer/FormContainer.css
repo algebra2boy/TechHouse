@@ -1,0 +1,45 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    padding: 20px;
+    border-radius: 8px;
+    /* very important to position it to center */
+    margin: auto;
+    background-color: #FFFBF5;
+}
+
+.Title, .Content, .ImageURL, .btn {
+    border-radius: 3px white;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.Title, .ImageURL {
+    height: 30px;
+}
+
+.Content {
+    resize: none;
+    height: 150px;
+}
+
+.btn {
+    width: 40%;
+    background-color: yello;
+    color: #03A9F4;
+    margin-top: 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    color: black;
+    background-color: #D2DE32;
+}
+
+#submit-button {
+    background-color: #F5F7F8;
+}
