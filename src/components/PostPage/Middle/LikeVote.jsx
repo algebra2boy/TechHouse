@@ -20,7 +20,6 @@ const LikeVote = ({ post }) => {
                     : p
             )
         )
-        console.log(posts);
 
         // await database
         //     .from("Posts")
