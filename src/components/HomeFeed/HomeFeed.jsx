@@ -18,11 +18,6 @@ const HomeFeed = () => {
     const [filter, setFilter] = useState(""); // either "newest" or "popular"
 
     useEffect(() => {
-        console.log('Component has re-rendered');
-      }, [posts]); // Dependency array includes posts
-
-
-    useEffect(() => {
         const fetchPosts = async () => {
             const { data } = await database
                 .from("Posts")
