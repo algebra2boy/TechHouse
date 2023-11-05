@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from 'prop-types';
 
 const Filter = ({ filter, setFilter, sort }) => {
 
@@ -25,5 +25,12 @@ const Filter = ({ filter, setFilter, sort }) => {
         </div>
     );
 }
+
+// Define propTypes for Filter component
+Filter.propTypes = {
+    filter: PropTypes.string,
+    setFilter: PropTypes.func.isRequired,
+    sort: PropTypes.func.isRequired
+};
 
 export default Filter;

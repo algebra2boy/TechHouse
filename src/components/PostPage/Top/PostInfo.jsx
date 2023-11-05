@@ -1,5 +1,5 @@
 import React from "react";
-import { convertTimeStamp } from "../../../extension/helper";
+import { convertTimeStamp } from "../../../Extension/helper";
 
 const PostInfo = ({ post }) => {
 

@@ -1,6 +1,5 @@
-import React from "react";
 import LikeVote from "./LikeVote";
-import UpdateVote from "./UpdateVote";
+// import UpdateVote from "./UpdateVote";
 
 const Middle = ({ post }) => {
     return (

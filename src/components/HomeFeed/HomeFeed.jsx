@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useOutletContext } from 'react-router-dom';
 
 import Filter from "./Filter";
@@ -6,15 +6,21 @@ import database from "../../Database/supabase";
 
 import "./HomeFeed.css";
 import PostList from "./PostList";
+import PostContext from "../../Context/postContext";
 
 const HomeFeed = () => {
 
     // this comes from parent compoennt (search bar)
     const { searchTerm } = useOutletContext();
 
-    const [posts, setPosts] = useState([]);
+    const { posts, setPosts } = useContext(PostContext);
     const [filteredPosts, setFilteredPosts] = useState([]);
     const [filter, setFilter] = useState(""); // either "newest" or "popular"
+
+    useEffect(() => {
+        console.log('Component has re-rendered');
+      }, [posts]); // Dependency array includes posts
+
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -28,7 +34,7 @@ const HomeFeed = () => {
     }, []);
 
     useEffect(() => {
-        if (searchTerm.length > 0) setFilteredPosts(posts.filter(p => p.title.toLowerCase().includes(searchTerm)));
+        if (searchTerm.length > 0) setFilteredPosts(posts.filter(p => p.title.toLowerCase().includes(searchTerm.toLowerCase())));
     }, [searchTerm]);
 
     const customSort = (filter) => {
@@ -44,8 +50,8 @@ const HomeFeed = () => {
 
             <Filter filter={filter} setFilter={setFilter} sort={customSort} />
 
-            <PostList 
-                posts={searchTerm.length === 0 ? posts : filteredPosts } />
+            <PostList
+                posts={searchTerm.length === 0 ? posts : filteredPosts} />
 
         </div>
     )

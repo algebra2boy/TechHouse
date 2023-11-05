@@ -1,5 +1,4 @@
-import React from "react";
-import {useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import PostInfo from "./Top/PostInfo";
 import Middle from "./Middle/Middle";
