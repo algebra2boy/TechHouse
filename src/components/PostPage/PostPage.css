@@ -7,11 +7,34 @@
 }
 
 .middle-section {
-    text-align: left;
     display: flex;
-    flex-direction: row;
+    align-items: center;
+    /* space between is important to push the trash can and pen
+    all the way to right */
+    justify-content: space-between;
 }
 
-.thumb {
+.middle-left-side {
+    display: flex;
+}
+
+.middle-right-side {
+    display: flex;
+    gap: 10px;
+}
+
+.thumb,
+.icon-image {
     margin-top: 10px;
+}
+
+.post-img {
+    width: 200px;
+    height: 200px;
+}
+
+.icon-image {
+    width: 40px;
+    height: 40px;
+    border: none;
 }

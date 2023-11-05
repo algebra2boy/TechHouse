@@ -1,22 +1,18 @@
 import pen from "/pen.jpeg";
 import trashcan from "/trashcan.png";
 
-import "./UpdatePost.css";
-
 const UpdateVote = () => {
     return (
-        <>
-            <Icon role={"edit"} url={pen}/>
-            <Icon role={"delete"} url={trashcan}/>
-        </>
+        <div className="middle-right-side">
+            <Icon role={"edit"} url={pen} />
+            <Icon role={"delete"} url={trashcan} />
+        </div>
     )
 };
 
 const Icon = ({ role, url }) => {
     return (
-        <div className={`icon-button ${role}`}>
-            <img src={url} alt="" />
-        </div>
+        <img src={url} alt={role} className="icon-image ${role}" />
     )
 }
 

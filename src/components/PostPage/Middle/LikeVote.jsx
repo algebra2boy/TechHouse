@@ -30,7 +30,7 @@ const LikeVote = ({ post }) => {
     }
 
     return (
-        <>
+        <div className="middle-left-side">
             <img
                 className="item thumb"
                 src={thumb}
@@ -40,7 +40,7 @@ const LikeVote = ({ post }) => {
             />
 
             <h5 className="item" width={100} height={50}>{post.like_count} upvotes</h5>
-        </>
+        </div>
     )
 };
 
