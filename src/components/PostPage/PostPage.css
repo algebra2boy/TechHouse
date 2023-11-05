@@ -26,6 +26,7 @@
 .thumb,
 .icon-image {
     margin-top: 10px;
+    cursor: pointer;
 }
 
 .post-img {
