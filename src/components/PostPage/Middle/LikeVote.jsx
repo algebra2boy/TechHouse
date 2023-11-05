@@ -6,9 +6,7 @@ import PostContext from "../../../Context/postContext.js";
 
 const LikeVote = ({ post }) => {
 
-    const { posts, setPosts } = useContext(PostContext);
-
-    console.log(useContext(PostContext));
+    const { setPosts } = useContext(PostContext);
 
     const likeHandler = async () => {
 
@@ -21,15 +19,18 @@ const LikeVote = ({ post }) => {
             )
         )
 
-        // await database
-        //     .from("Posts")
-        //     .update({ like_count: post.like_count + 1 })
-        //     .eq("id", post.id);
+        try {
+            await database
+                .from("Posts")
+                .update({ like_count: post.like_count + 1 })
+                .eq("id", post.id);
+        } catch (error) {
+            alert("unable to update like count" + error);
+        }
     }
 
     return (
         <>
-            {JSON.stringify(posts)}
             <img
                 className="item thumb"
                 src={thumb}
@@ -38,7 +39,7 @@ const LikeVote = ({ post }) => {
                 onClick={likeHandler}
             />
 
-            <h5 className="item">{post.like_count} upvotes</h5>
+            <h5 className="item" width={100} height={50}>{post.like_count} upvotes</h5>
         </>
     )
 };

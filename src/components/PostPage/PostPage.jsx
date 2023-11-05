@@ -20,7 +20,7 @@ const PostPage = () => {
                 <PostInfo post={post} />
             </div>
             <div className="middle-section">
-                <Middle post={post}/>
+                <Middle post={post} />
             </div>
 
             <div className="botton-section">

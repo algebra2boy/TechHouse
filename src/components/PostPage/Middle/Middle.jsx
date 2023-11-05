@@ -1,10 +1,11 @@
 import LikeVote from "./LikeVote";
-// import UpdateVote from "./UpdateVote";
+import UpdateVote from "./UpdatePost";
 
 const Middle = ({ post }) => {
     return (
         <>
-            <LikeVote post={post}/>
+            <LikeVote post={post} />
+            <UpdateVote post={post} />
         </>
     )
 }

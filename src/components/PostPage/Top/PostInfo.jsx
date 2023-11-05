@@ -15,7 +15,6 @@ const PostInfo = ({ post }) => {
                     alt={`image from post${post.id}`} 
                 />
             }
-            <h3 className="item">{post.like_count} upvotes</h3>
         </>
     )
 
