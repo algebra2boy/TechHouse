@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types"
 import ListItem from "./ListItem";
 import { Link } from "react-router-dom";
 
@@ -24,5 +24,18 @@ const PostList = ({ posts }) => {
         </div>
     );
 }
+
+PostList.propTypes = {
+    posts: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number,
+        created_at: PropTypes.instanceOf(Date),
+        title: PropTypes.string,
+        content: PropTypes.string,
+        like_count: PropTypes.number,
+        url: PropTypes.string
+    }))
+}
+
+
 
 export default PostList;

@@ -1,3 +1,4 @@
+import PropTypes from "prop-types"
 import { useState } from "react";
 import PostContext from "./postContext";
 
@@ -8,4 +9,7 @@ export const PostContextProvider = ({ children }) => {
             {children}
         </PostContext.Provider>
     )
+}
+PostContextProvider.propTypes = {
+  children: PropTypes.any
 }

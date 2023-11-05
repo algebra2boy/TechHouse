@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types"
 import { convertTimeStamp } from "../../Extension/helper";
 
 const ListItem = ({ post }) => {
@@ -12,5 +12,16 @@ const ListItem = ({ post }) => {
         </div>
     )
 };
+
+ListItem.propTypes = {
+    post: PropTypes.shape({
+        id: PropTypes.number,
+        created_at: PropTypes.instanceOf(Date),
+        title: PropTypes.string,
+        content: PropTypes.string,
+        like_count: PropTypes.number,
+        url: PropTypes.string
+    })
+}
 
 export default ListItem;

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useOutletContext } from 'react-router-dom';
 
 import Filter from "./Filter";
@@ -26,11 +26,11 @@ const HomeFeed = () => {
             setPosts(data);
         };
         fetchPosts();
-    }, []);
+    }, [setPosts]); // <- including setPosts here to satisfy ESLint
 
     useEffect(() => {
         if (searchTerm.length > 0) setFilteredPosts(posts.filter(p => p.title.toLowerCase().includes(searchTerm.toLowerCase())));
-    }, [searchTerm]);
+    }, [searchTerm, posts]);
 
     const customSort = (filter) => {
         if (filter === "newest") {

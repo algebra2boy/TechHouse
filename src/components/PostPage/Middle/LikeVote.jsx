@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import PropTypes from "prop-types"
+import { useContext } from "react";
 import thumb from "/thumb.jpg";
 
 import database from "../../../Database/supabase.js";
@@ -43,5 +44,16 @@ const LikeVote = ({ post }) => {
         </div>
     )
 };
+
+LikeVote.propTypes = {
+  post: PropTypes.shape({
+    id: PropTypes.number,
+    created_at: PropTypes.instanceOf(Date),
+    title: PropTypes.string,
+    content: PropTypes.string,
+    like_count: PropTypes.number,
+    url: PropTypes.string
+  })
+}
 
 export default LikeVote;

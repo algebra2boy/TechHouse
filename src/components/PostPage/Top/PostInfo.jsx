@@ -1,4 +1,4 @@
-import React from "react";
+import PropTypes from "prop-types"
 import { convertTimeStamp } from "../../../Extension/helper";
 
 const PostInfo = ({ post }) => {
@@ -18,6 +18,17 @@ const PostInfo = ({ post }) => {
         </>
     )
 
+}
+
+PostInfo.propTypes = {
+  post: PropTypes.shape({
+    id: PropTypes.number,
+    created_at: PropTypes.instanceOf(Date),
+    title: PropTypes.string,
+    content: PropTypes.string,
+    like_count: PropTypes.number,
+    url: PropTypes.string
+  })
 }
 
 export default PostInfo;
