@@ -48,7 +48,7 @@ const LikeVote = ({ post }) => {
 LikeVote.propTypes = {
   post: PropTypes.shape({
     id: PropTypes.number,
-    created_at: PropTypes.instanceOf(Date),
+    created_at: PropTypes.string,
     title: PropTypes.string,
     content: PropTypes.string,
     like_count: PropTypes.number,

@@ -1,4 +1,4 @@
-import FormContainer from "../FormContainer/FormContainer";
+import FormContainer from "../../FormContainer/FormContainer";
 
 const CreatePostPage = () => {
 
