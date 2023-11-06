@@ -1,10 +1,15 @@
 import PropTypes from "prop-types"
 import { useState } from "react";
-import supabase from "../../Database/supabase.js";
 
 import "./FormContainer.css";
 
-const FormContainer = ({ title = "", content = "", url = "", buttonCapation = "" }) => {
+const FormContainer = ({
+    title = "",
+    content = "",
+    url = "",
+    buttonCapation = "",
+    buttonHandler
+}) => {
 
     const [formData, setFormData] = useState({
         "title": title,
@@ -26,13 +31,7 @@ const FormContainer = ({ title = "", content = "", url = "", buttonCapation = ""
         }
 
         try {
-            await supabase
-                .from("Posts")
-                .insert({
-                    "title": formData.title,
-                    "content": formData.content,
-                    "url": formData.url
-                });
+            buttonHandler(formData.title, formData.content, formData.url);
             clearField();
             window.location = "/";
         } catch (error) {
@@ -44,6 +43,7 @@ const FormContainer = ({ title = "", content = "", url = "", buttonCapation = ""
 
     return (
         <div className="form-container">
+            {JSON.stringify(formData)}
             <input
                 className="Title"
                 type="text"
@@ -81,10 +81,11 @@ const FormContainer = ({ title = "", content = "", url = "", buttonCapation = ""
 };
 
 FormContainer.propTypes = {
-  content: PropTypes.string,
-  title: PropTypes.string,
-  url: PropTypes.string,
-  buttonCapation: PropTypes.string
+    content: PropTypes.string,
+    title: PropTypes.string,
+    url: PropTypes.string,
+    buttonCapation: PropTypes.string,
+    buttonHandler: PropTypes.func
 }
 
 
