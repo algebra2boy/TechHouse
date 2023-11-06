@@ -11,6 +11,10 @@ const CommentCreation = () => {
     const submitCommentHandler = async (event) => {
 
         if (event.key === "Enter") {
+            if (comment.length <= 10) {
+                alert("comment is too short, must be at least 10 characters!");
+                return;
+            }
             await supabase
                 .from("Comments")
                 .insert({
@@ -22,8 +26,9 @@ const CommentCreation = () => {
     };
 
     return (
-        <div className="comment-creation">
+        <div className="comment-creation item">
             <input
+                className="textfield"
                 type="text"
                 name="comment"
                 value={comment}

@@ -43,7 +43,6 @@ const FormContainer = ({
 
     return (
         <div className="form-container">
-            {JSON.stringify(formData)}
             <input
                 className="Title"
                 type="text"
