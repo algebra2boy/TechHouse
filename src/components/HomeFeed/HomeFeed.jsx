@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useOutletContext } from 'react-router-dom';
 
 import Filter from "./Filter";
-import database from "../../database/supabase.js";
+import database from "../../Database/supabase.js";
 
 import "./HomeFeed.css";
 import PostList from "./PostList";

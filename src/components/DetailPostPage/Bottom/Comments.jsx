@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback} from "react";
 import { useParams } from "react-router-dom";
 
 import supabase from "../../../Database/supabase.js";
@@ -11,17 +11,18 @@ const Comments = () => {
     const postID = useParams().id;
     const [comments, setComments] = useState([]);
 
+    const fetchComments = useCallback(async () => {
+        const { data } = await supabase
+            .from("Comments")
+            .select("*")
+            .eq("post_id", postID)
+            .order('created_at', { ascending: true });
+        setComments(data);
+    }, [postID]);
+
     useEffect(() => {
-        const fetchComments = async () => {
-            const { data } = await supabase
-                .from("Comments")
-                .select("*")
-                .eq("post_id", postID)
-                .order('created_at', { ascending: true });
-            setComments(data);
-        };
         fetchComments();
-    }, []);
+    }, [fetchComments]);
 
     return (
 
@@ -36,7 +37,7 @@ const Comments = () => {
                         </li>
                     ))}
             </div>
-            <CommentCreation commentsHandler={setComments} />
+            <CommentCreation updateCommentsHandler={fetchComments} />
         </>
 
     );

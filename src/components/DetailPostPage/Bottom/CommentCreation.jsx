@@ -1,9 +1,10 @@
+import PropTypes from "prop-types"
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
 import supabase from "../../../Database/supabase.js";
 
-const CommentCreation = () => {
+const CommentCreation = ({ updateCommentsHandler }) => {
 
     const postID = useParams().id;
     const [comment, setComment] = useState("");
@@ -20,8 +21,9 @@ const CommentCreation = () => {
                 .insert({
                     "post_id": postID,
                     "comment": comment
-                });   
+                });
             setComment("");
+            updateCommentsHandler();
         }
     };
 
@@ -39,6 +41,10 @@ const CommentCreation = () => {
         </div>
 
     );
+}
+
+CommentCreation.propTypes = {
+    updateCommentsHandler: PropTypes.func
 }
 
 export default CommentCreation;
