@@ -1,25 +1,24 @@
 import PropTypes from "prop-types"
 import FormContainer from "../../FormContainer/FormContainer";
 
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 import supabase from "../../../database/supabase.js"
 
 const UpdatePostPage = () => {
 
     const { title, content, url } = useLocation().state;
+    const postID = useParams().id;
 
-    const updatePostHandler = async (newTitle, newContent, newUrl, newLikeCount) => {
-        console.log("i am here")
+    const updatePostHandler = async (title, content, url) => {
         await supabase
             .from("Posts")
             .update({
-                title: newTitle,
-                content: newContent,
-                url: newUrl,
-                like_count: newLikeCount
+                "title": title,
+                "content": content,
+                "url": url
             })
-            .eq("id", id);
+            .eq("id", postID);
     }
 
     return (
