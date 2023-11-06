@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import PropTypes from "prop-types"
 import pen from "/pen.jpeg";
 import trashcan from "/trashcan.png";
@@ -18,21 +20,34 @@ const UpdateVote = ({ post }) => {
 
     return (
         <div className="middle-right-side">
-            <Icon role={"edit"} url={pen} />
+            <Link
+                to={`/updatePost/${post.id}`}
+                state={
+                    {
+                        title: post.title,
+                        content: post.content,
+                        url: post.url
+                    }
+                }
+            >
+                <Icon role={"edit"} url={pen} />
+            </Link>
+
             <Icon role={"delete"} url={trashcan} action={() => deleteHandler(post.id)} />
+
         </div>
     )
 };
 
 UpdateVote.propTypes = {
-  post: PropTypes.shape({
-    id: PropTypes.number,
-    created_at: PropTypes.string,
-    title: PropTypes.string,
-    content: PropTypes.string,
-    like_count: PropTypes.number,
-    url: PropTypes.string
-  })
+    post: PropTypes.shape({
+        id: PropTypes.number,
+        created_at: PropTypes.string,
+        title: PropTypes.string,
+        content: PropTypes.string,
+        like_count: PropTypes.number,
+        url: PropTypes.string
+    })
 }
 
 const Icon = ({ role, url, action }) => {
@@ -46,9 +61,9 @@ const Icon = ({ role, url, action }) => {
 }
 
 Icon.propTypes = {
-  action: PropTypes.func,
-  role: PropTypes.string,
-  url: PropTypes.string
+    action: PropTypes.func,
+    role: PropTypes.string,
+    url: PropTypes.string
 }
 
 export default UpdateVote;

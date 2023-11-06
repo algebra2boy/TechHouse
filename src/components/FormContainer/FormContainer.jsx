@@ -1,14 +1,15 @@
+import PropTypes from "prop-types"
 import { useState } from "react";
 import supabase from "../../Database/supabase.js";
 
 import "./FormContainer.css";
 
-const FormContainer = () => {
+const FormContainer = ({ title = "", content = "", url = "", buttonCapation = "" }) => {
 
     const [formData, setFormData] = useState({
-        "title": "",
-        "content": "",
-        "url": ""
+        "title": title,
+        "content": content,
+        "url": url
     });
 
     const formDataHandler = (e) => {
@@ -73,11 +74,18 @@ const FormContainer = () => {
                 className="btn"
                 id="submit-button"
                 onClick={submitHandler}>
-                Create Post
+                {buttonCapation}
             </button>
         </div>
     );
 };
+
+FormContainer.propTypes = {
+  content: PropTypes.string,
+  title: PropTypes.string,
+  url: PropTypes.string,
+  buttonCapation: PropTypes.string
+}
 
 
 export default FormContainer;

@@ -4,7 +4,7 @@ const CreatePostPage = () => {
 
     return (
         <div className="create-post-page" style={{"padding": "50px"}}>
-            <FormContainer />
+            <FormContainer buttonCapation = "Create Post" />
         </div>
     )
 };
