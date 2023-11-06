@@ -1,8 +1,10 @@
 import { useParams } from "react-router-dom";
 import { useContext } from "react";
 
-import PostInfo from "./Top/PostInfo";
+import PostInfo from "./Top/PostInfo"; // TOP
 import Middle from "./Middle/Middle";
+import Comments from "./Bottom/Comments";
+
 import PostContext from "../../Context/postContext";
 
 import "./PostPage.css";
@@ -24,7 +26,7 @@ const PostPage = () => {
             </div>
 
             <div className="botton-section">
-
+                <Comments postID={post.id} />
             </div>
         </div>
     )
