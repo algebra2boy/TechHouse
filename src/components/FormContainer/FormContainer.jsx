@@ -14,7 +14,7 @@ const FormContainer = ({
     url = "",
     buttonCapation = "",
     buttonHandler,
-    ModalCaption = "Set a secret key so you are the only one who can edit and delete the post. Press Enter when you are done."
+    // ModalCaption = "Set a secret key so you are the only one who can edit and delete the post. Press Enter when you are done."
 }) => {
 
     const [formData, setFormData] = useState({
@@ -23,21 +23,33 @@ const FormContainer = ({
         "url": url
     });
 
-    const [showModal, setShowModal] = useState(false);
-    const [secretKey, setSecretKey] = useState("");
-    const [isSecretKeyShown, setIsSecretKeyShown] = useState(true);
+    // const [showModal, setShowModal] = useState(false);
+    // const [secretKey, setSecretKey] = useState("");
+    // const [isSecretKeyShown, setIsSecretKeyShown] = useState(true);
 
     const formDataHandler = (e) => {
         const target = e.target;
         setFormData({ ...formData, [target.name]: target.value });
     };
 
-    const submitHandler = async (event) => {
+    const submitHandler = async () => {
 
-        if (event.key !== "Enter") return;
+        // if (event.key !== "Enter") return;
+
+        // if (secretKey.length <= 5) {
+        //     alert("password is too short. Please try a password with at least 5 characters");
+        //     return;
+        // }
+
+        // check if title is empty
+        if (formData.title.length == 0) {
+            alert("Title is empty!!")
+            clearFormField();
+            return;
+        }
 
         try {
-            await buttonHandler(formData.title, formData.content, formData.url, secretKey, clearFormField);
+            buttonHandler(formData.title, formData.content, formData.url);
             clearFormField();
             window.location = "/";
         } catch (error) {
@@ -46,12 +58,12 @@ const FormContainer = ({
     };
 
     const clearFormField = () => setFormData({ "title": "", "content": "", "url": "" });
-    const toggleEye = () => setIsSecretKeyShown(!isSecretKeyShown);
-    const closeModalHandler = () => {
-        setShowModal(false);
-        setIsSecretKeyShown(true);
-        setSecretKey("");
-    }
+    // const toggleEye = () => setIsSecretKeyShown(!isSecretKeyShown);
+    // const closeModalHandler = () => {
+    //     setShowModal(false);
+    //     setIsSecretKeyShown(true);
+    //     setSecretKey("");
+    // }
 
     return (
         <div className="form-container">
@@ -84,11 +96,12 @@ const FormContainer = ({
             <button
                 className="btn"
                 id="submit-button"
-                onClick={() => setShowModal(true)}>
+                // onClick={() => setShowModal(true)}>
+                onClick={submitHandler} >
                 {buttonCapation}
             </button>
 
-            <Modal
+            {/* <Modal
                 open={showModal}
                 onClose={closeModalHandler}
             >
@@ -117,7 +130,7 @@ const FormContainer = ({
                         </div>
                     </form>
                 </Box>
-            </Modal>
+            </Modal> */}
 
         </div>
     );
