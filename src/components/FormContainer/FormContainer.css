@@ -43,3 +43,11 @@
 #submit-button {
     background-color: #F5F7F8;
 }
+
+.input-container {
+    display: flex;
+}
+
+.secretkey-input {
+    width: 50%;
+}

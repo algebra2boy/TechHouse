@@ -7,10 +7,17 @@ import supabase from "../../../database/supabase.js"
 
 const UpdatePostPage = () => {
 
-    const { title, content, url } = useLocation().state;
+    const { title, content, url, password } = useLocation().state;
     const postID = useParams().id;
 
-    const updatePostHandler = async (title, content, url) => {
+    const updatePostHandler = async (title, content, url, secretKey, clearFormField) => {
+
+        if (password !== secretKey) {
+            alert("wrong password");
+            clearFormField();
+            return;
+        }
+
         await supabase
             .from("Posts")
             .update({
@@ -29,6 +36,7 @@ const UpdatePostPage = () => {
                 url={url}
                 buttonCapation="Update Post"
                 buttonHandler={updatePostHandler}
+                ModalCaption={"please enter your secret key to update the post"}
             />
         </div>
     )

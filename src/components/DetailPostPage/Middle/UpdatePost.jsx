@@ -4,7 +4,7 @@ import PropTypes from "prop-types"
 import pen from "/pen.jpeg";
 import trashcan from "/trashcan.png";
 
-import supabase from "../../../Database/supabase.js";
+import supabase from "../../../database/supabase.js";
 
 const UpdateVote = ({ post }) => {
 
@@ -26,7 +26,8 @@ const UpdateVote = ({ post }) => {
                     {
                         title: post.title,
                         content: post.content,
-                        url: post.url
+                        url: post.url,
+                        password: post.password
                     }
                 }
             >

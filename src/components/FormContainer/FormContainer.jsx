@@ -1,5 +1,10 @@
 import PropTypes from "prop-types"
 import { useState } from "react";
+import { Modal, Box, Typography } from "@mui/material";
+import { ModalBoxStyle } from "../../Style/MUI_Style";
+
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 import "./FormContainer.css";
 
@@ -8,7 +13,8 @@ const FormContainer = ({
     content = "",
     url = "",
     buttonCapation = "",
-    buttonHandler
+    buttonHandler,
+    ModalCaption = "Set a secret key so you are the only one who can edit and delete the post. Press Enter when you are done."
 }) => {
 
     const [formData, setFormData] = useState({
@@ -17,29 +23,35 @@ const FormContainer = ({
         "url": url
     });
 
+    const [showModal, setShowModal] = useState(false);
+    const [secretKey, setSecretKey] = useState("");
+    const [isSecretKeyShown, setIsSecretKeyShown] = useState(true);
+
     const formDataHandler = (e) => {
         const target = e.target;
         setFormData({ ...formData, [target.name]: target.value });
     };
 
-    const submitHandler = async () => {
-        // check if title is empty
-        if (formData.title.length == 0) {
-            alert("Title is empty!!")
-            clearField();
-            return;
-        }
+    const submitHandler = async (event) => {
+
+        if (event.key !== "Enter") return;
 
         try {
-            buttonHandler(formData.title, formData.content, formData.url);
-            clearField();
+            await buttonHandler(formData.title, formData.content, formData.url, secretKey, clearFormField);
+            clearFormField();
             window.location = "/";
         } catch (error) {
             alert("Something went wrong inserting the record", error);
         }
     };
 
-    const clearField = () => setFormData({ "title": "", "content": "", "url": "" });
+    const clearFormField = () => setFormData({ "title": "", "content": "", "url": "" });
+    const toggleEye = () => setIsSecretKeyShown(!isSecretKeyShown);
+    const closeModalHandler = () => {
+        setShowModal(false);
+        setIsSecretKeyShown(true);
+        setSecretKey("");
+    }
 
     return (
         <div className="form-container">
@@ -58,7 +70,7 @@ const FormContainer = ({
                 name="content"
                 value={formData.content}
                 onChange={formDataHandler}
-            ></textarea>
+            />
 
             <input
                 className="ImageURL"
@@ -72,9 +84,41 @@ const FormContainer = ({
             <button
                 className="btn"
                 id="submit-button"
-                onClick={submitHandler}>
+                onClick={() => setShowModal(true)}>
                 {buttonCapation}
             </button>
+
+            <Modal
+                open={showModal}
+                onClose={closeModalHandler}
+            >
+                <Box sx={ModalBoxStyle}>
+                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                        🔐 Permission Access 🔐
+                    </Typography>
+                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                        {ModalCaption}
+                    </Typography>
+                    <form>
+                        <div className="input-container">
+                            <input
+                                type={isSecretKeyShown ? "password" : "text"}
+                                className="secretkey-input"
+                                name="secretkey"
+                                autoComplete="on"
+                                value={secretKey}
+                                onChange={(e) => setSecretKey(e.target.value)}
+                                onKeyDown={submitHandler}
+                            />
+                            {isSecretKeyShown
+                                ? <VisibilityOffIcon onClick={toggleEye} />
+                                : <VisibilityIcon onClick={toggleEye} />
+                            }
+                        </div>
+                    </form>
+                </Box>
+            </Modal>
+
         </div>
     );
 };
@@ -84,7 +128,7 @@ FormContainer.propTypes = {
     title: PropTypes.string,
     url: PropTypes.string,
     buttonCapation: PropTypes.string,
-    buttonHandler: PropTypes.func
+    buttonHandler: PropTypes.func,
 }
 
 
