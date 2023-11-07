@@ -12,11 +12,11 @@ const UpdatePostPage = () => {
 
     const updatePostHandler = async (title, content, url, secretKey, clearFormField) => {
 
-        if (password !== secretKey) {
-            alert("wrong password");
-            clearFormField();
-            return;
-        }
+        // if (password !== secretKey) {
+        //     alert("wrong password");
+        //     clearFormField();
+        //     return;
+        // }
 
         await supabase
             .from("Posts")
