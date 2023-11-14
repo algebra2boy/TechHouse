@@ -32,6 +32,10 @@ The following **optional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
+https://github.com/algebra2boy/TechHouse/assets/103079472/0ef8b111-dfce-4c86-ab91-eb98fccc777a
+
+
+
 ## License
 
     Copyright [2023] [Yongye Tan]
